@@ -15,7 +15,7 @@ Doctors' daily TODO list notifier application, on this project there is a client
    1. Intsall angular cli
    2. Open the web client on IDE
    3. Run npm install to install node packages
-   4. Run the web application n to run the appication run this command ng serve
+   4. Run the web application to run the appication run this command <b>ng serve</b>
 
 
 
