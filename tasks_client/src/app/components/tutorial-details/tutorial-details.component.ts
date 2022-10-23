@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { TutorialService } from 'src/app/services/tutorial.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TasksService } from 'src/app/services/tutorial.service';
 
 @Component({
   selector: 'app-tutorial-details',
@@ -8,11 +8,11 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./tutorial-details.component.css']
 })
 export class TutorialDetailsComponent implements OnInit {
-  currentTutorial = null;
+  currentTask = null;
   message = '';
 
   constructor(
-    private tutorialService: TutorialService,
+    private taskService: TasksService,
     private route: ActivatedRoute,
     private router: Router) { }
 
@@ -22,10 +22,10 @@ export class TutorialDetailsComponent implements OnInit {
   }
 
   getTutorial(id): void {
-    this.tutorialService.get(id)
+    this.taskService.get(id)
       .subscribe(
         data => {
-          this.currentTutorial = data;
+          this.currentTask = data;
           console.log(data);
         },
         error => {
@@ -35,15 +35,15 @@ export class TutorialDetailsComponent implements OnInit {
 
   updatePublished(status): void {
     const data = {
-      title: this.currentTutorial.title,
-      description: this.currentTutorial.description,
+      title: this.currentTask.title,
+      description: this.currentTask.description,
       published: status
     };
 
-    this.tutorialService.update(this.currentTutorial.id, data)
+    this.taskService.update(this.currentTask.id, data)
       .subscribe(
         response => {
-          this.currentTutorial.published = status;
+          this.currentTask.published = status;
           console.log(response);
         },
         error => {
@@ -52,7 +52,7 @@ export class TutorialDetailsComponent implements OnInit {
   }
 
   updateTutorial(): void {
-    this.tutorialService.update(this.currentTutorial.id, this.currentTutorial)
+    this.taskService.update(this.currentTask.id, this.currentTask)
       .subscribe(
         response => {
           console.log(response);
@@ -63,12 +63,12 @@ export class TutorialDetailsComponent implements OnInit {
         });
   }
 
-  deleteTutorial(): void {
-    this.tutorialService.delete(this.currentTutorial.id)
+  deleteTask(): void {
+    this.taskService.delete(this.currentTask.id)
       .subscribe(
         response => {
           console.log(response);
-          this.router.navigate(['/tutorials']);
+          this.router.navigate(['/Tasks']);
         },
         error => {
           console.log(error);

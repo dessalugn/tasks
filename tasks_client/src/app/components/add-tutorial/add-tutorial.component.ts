@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TutorialService } from 'src/app/services/tutorial.service';
+import { TasksService } from 'src/app/services/tutorial.service';
 
 @Component({
   selector: 'app-add-tutorial',
@@ -14,7 +14,7 @@ export class AddTutorialComponent implements OnInit {
   };
   submitted = false;
 
-  constructor(private tutorialService: TutorialService) { }
+  constructor(private taskService: TasksService) { }
 
   ngOnInit(): void {
   }
@@ -25,7 +25,7 @@ export class AddTutorialComponent implements OnInit {
       description: this.tutorial.description
     };
 
-    this.tutorialService.create(data)
+    this.taskService.create(data)
       .subscribe(
         response => {
           console.log(response);

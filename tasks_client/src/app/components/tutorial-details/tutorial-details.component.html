@@ -1,5 +1,5 @@
 <div style="width: 400px; margin: auto;">
-  <div *ngIf="currentTutorial" class="edit-form">
+  <div *ngIf="currentTask" class="edit-form">
     <h4>Tutorial</h4>
     <form>
       <div class="form-group">
@@ -8,7 +8,7 @@
           type="text"
           class="form-control"
           id="title"
-          [(ngModel)]="currentTutorial.title"
+          [(ngModel)]="currentTask.title"
           name="title"
         />
       </div>
@@ -18,26 +18,26 @@
           type="text"
           class="form-control"
           id="description"
-          [(ngModel)]="currentTutorial.description"
+          [(ngModel)]="currentTask.description"
           name="description"
         />
       </div>
 
       <div class="form-group">
         <label><strong>Status:</strong></label>
-        {{ currentTutorial.published ? "Published" : "Pending" }}
+        {{ currentTask.published ? "Published" : "Pending" }}
       </div>
     </form>
 
     <button
       class="badge badge-primary mr-2"
-      *ngIf="currentTutorial.published"
+      *ngIf="currentTask.published"
       (click)="updatePublished(false)"
     >
       UnPublish
     </button>
     <button
-      *ngIf="!currentTutorial.published"
+      *ngIf="!currentTask.published"
       class="badge badge-primary mr-2"
       (click)="updatePublished(true)"
     >
@@ -58,7 +58,7 @@
     <p>{{ message }}</p>
   </div>
 
-  <div *ngIf="!currentTutorial">
+  <div *ngIf="!currentTask">
     <br />
     <p>Cannot access this Tutorial...</p>
   </div>

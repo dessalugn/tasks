@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TutorialService } from 'src/app/services/tutorial.service';
+import { TasksService } from 'src/app/services/tutorial.service';
 
 @Component({
   selector: 'app-tutorials-list',
@@ -13,7 +13,7 @@ export class TutorialsListComponent implements OnInit {
   currentIndex = -1;
   title = '';
 
-  constructor(private tutorialService: TutorialService) { }
+  constructor(private tutorialService: TasksService) { }
 
   ngOnInit(): void {
     this.retrieveTutorials();

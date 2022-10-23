@@ -2,40 +2,40 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-const baseUrl = 'http://localhost:8080/api/tutorials';
+const baseUrl = 'http://localhost:8000/api/tasks';
 
 @Injectable({
   providedIn: 'root'
 })
-export class TutorialService {
+export class TasksService {
 
   constructor(private http: HttpClient) { }
 
-  getAll(): Observable<any> {
+  getAll(){
     return this.http.get(baseUrl);
   }
 
-  get(id): Observable<any> {
+  get(id){
     return this.http.get(`${baseUrl}/${id}`);
   }
 
-  create(data): Observable<any> {
+  create(data){
     return this.http.post(baseUrl, data);
   }
 
-  update(id, data): Observable<any> {
+  update(id, data){
     return this.http.put(`${baseUrl}/${id}`, data);
   }
 
-  delete(id): Observable<any> {
+  delete(id){
     return this.http.delete(`${baseUrl}/${id}`);
   }
 
-  deleteAll(): Observable<any> {
+  deleteAll(){
     return this.http.delete(baseUrl);
   }
 
-  findByTitle(title): Observable<any> {
+  findByTitle(title){
     return this.http.get(`${baseUrl}?title=${title}`);
   }
 }
