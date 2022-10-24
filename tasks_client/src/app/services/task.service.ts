@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 const baseUrl = 'http://localhost:8000/api/tasks';
@@ -9,7 +9,8 @@ const baseUrl = 'http://localhost:8000/api/tasks';
 })
 export class TasksService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+  }
 
   getAll(){
     return this.http.get(baseUrl);

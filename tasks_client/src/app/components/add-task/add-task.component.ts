@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { TasksService } from 'src/app/services/tutorial.service';
+import { TasksService } from 'src/app/services/task.service';
 
 @Component({
-  selector: 'app-add-tutorial',
-  templateUrl: './add-tutorial.component.html',
-  styleUrls: ['./add-tutorial.component.css']
+  selector: 'app-add-task',
+  templateUrl: './add-task.component.html',
+  styleUrls: ['./add-task.component.css']
 })
-export class AddTutorialComponent implements OnInit {
-  tutorial = {
+export class AddTaskComponent implements OnInit {
+  task = {
     title: '',
     description: '',
     published: false
@@ -19,10 +19,10 @@ export class AddTutorialComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  saveTutorial(): void {
+  saveTask(): void {
     const data = {
-      title: this.tutorial.title,
-      description: this.tutorial.description
+      title: this.task.title,
+      description: this.task.description
     };
 
     this.taskService.create(data)
@@ -36,9 +36,9 @@ export class AddTutorialComponent implements OnInit {
         });
   }
 
-  newTutorial(): void {
+  newTask(): void {
     this.submitted = false;
-    this.tutorial = {
+    this.task = {
       title: '',
       description: '',
       published: false

@@ -1,27 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TasksService } from 'src/app/services/tutorial.service';
+import { TasksService } from 'src/app/services/task.service';
 
 @Component({
-  selector: 'app-tutorial-details',
-  templateUrl: './tutorial-details.component.html',
-  styleUrls: ['./tutorial-details.component.css']
+  selector: 'app-task-details',
+  templateUrl: './task-details.component.html',
+  styleUrls: ['./task-details.component.css']
 })
-export class TutorialDetailsComponent implements OnInit {
+export class TaskDetailsComponent implements OnInit {
   currentTask = null;
   message = '';
 
-  constructor(
-    private taskService: TasksService,
-    private route: ActivatedRoute,
+  constructor(    private taskService: TasksService,    private route: ActivatedRoute,
     private router: Router) { }
 
   ngOnInit(): void {
     this.message = '';
-    this.getTutorial(this.route.snapshot.paramMap.get('id'));
+    this.getTask(this.route.snapshot.paramMap.get('id'));
   }
 
-  getTutorial(id): void {
+  getTask(id): void {
     this.taskService.get(id)
       .subscribe(
         data => {
@@ -33,17 +31,17 @@ export class TutorialDetailsComponent implements OnInit {
         });
   }
 
-  updatePublished(status): void {
+  updateStatus(status): void {
     const data = {
       title: this.currentTask.title,
       description: this.currentTask.description,
-      published: status
+      status: status
     };
 
     this.taskService.update(this.currentTask.id, data)
       .subscribe(
         response => {
-          this.currentTask.published = status;
+          this.currentTask.status = status;
           console.log(response);
         },
         error => {
@@ -51,12 +49,12 @@ export class TutorialDetailsComponent implements OnInit {
         });
   }
 
-  updateTutorial(): void {
+  updateTask(): void {
     this.taskService.update(this.currentTask.id, this.currentTask)
       .subscribe(
         response => {
           console.log(response);
-          this.message = 'The tutorial was updated successfully!';
+          this.message = 'The task was updated successfully!';
         },
         error => {
           console.log(error);
